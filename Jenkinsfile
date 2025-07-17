@@ -40,21 +40,21 @@ pipeline {
             }
         }
 
-        stage('Commit Updated YAML') {
-            steps {
-                script {
-                    withCredentials([usernamePassword(credentialsId: 'github-token', usernameVariable: 'GIT_USER', passwordVariable: 'GIT_PASS')]) {
-                        sh '''
-                        git config user.name "KamalSPadiyar"
-                        git config user.email "kamalsinghpadiyar1919@gmail.com"
-                        git add manifests/deployment.yaml
-                        git commit -m "Update image tag to ${IMAGE_TAG}" || echo "No changes to commit"
-                        git push https://${GIT_USER}:${GIT_PASS}@github.com/KamalSPadiyar/STUDY_BUDDY_AI.git HEAD:main
-                        '''
-                    }
-                }//https://github.com/KamalSPadiyar/STUDY_BUDDY_AI.git
-            }
-        }
+        // stage('Commit Updated YAML') {
+        //     steps {
+        //         script {
+        //             withCredentials([usernamePassword(credentialsId: 'github-token', usernameVariable: 'GIT_USER', passwordVariable: 'GIT_PASS')]) {
+        //                 sh '''
+        //                 git config user.name "KamalSPadiyar"
+        //                 git config user.email "kamalsinghpadiyar1919@gmail.com"
+        //                 git add manifests/deployment.yaml
+        //                 git commit -m "Update image tag to ${IMAGE_TAG}" || echo "No changes to commit"
+        //                 git push https://${GIT_USER}:${GIT_PASS}@github.com/KamalSPadiyar/STUDY_BUDDY_AI.git HEAD:main
+        //                 '''
+        //             }
+        //         }//https://github.com/KamalSPadiyar/STUDY_BUDDY_AI.git
+        //     }
+        // }
         stage('Install Kubectl & ArgoCD CLI Setup') {
             steps {
                 sh '''
